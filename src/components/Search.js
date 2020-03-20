@@ -6,15 +6,15 @@ const Search = () => {
 
     const [searchText, setSearchText] = useState('')
 
-    const handleSubmit = e => {
-        e.preventDefault()
+    const handleChange = e => {
+        setSearchText(e.target.value)
         findByCountry(searchText)
     }
 
     return (
-        <form className="container" onSubmit={ handleSubmit }>
+        <form className="container" onSubmit={e => e.preventDefault()}>
             <input type="text"
-                onChange={e => setSearchText(e.target.value)}
+                onChange={handleChange}
                 value={ searchText }
                 placeholder="Enter A Country Name"
                 />
