@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from 'react'
 import CoronaContext from '../context/coronaContext'
+
 const CoronaVirus = () => {
     const { getCoronaUpdate, locations, searchedCountry } = useContext(CoronaContext)
 
     useEffect(() => {
         getCoronaUpdate()
         // eslint-disable-next-line
-    }, [])
+    }, [locations])
 
     return (
         <div>

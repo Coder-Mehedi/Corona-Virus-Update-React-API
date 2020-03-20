@@ -4,6 +4,7 @@ import CoronaContextProvider from './context/coronaState'
 import CoronaVirus from './components/CoronaVirus';
 import Header from './components/Header';
 import Search from './components/Search';
+import Total from './components/Total';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
      <CoronaContextProvider>
        <Header />
        <Search />
+       <Total />
        <CoronaVirus />
      </CoronaContextProvider>
     </div>
