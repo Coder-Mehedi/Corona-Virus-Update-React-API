@@ -1,0 +1,1 @@
+export const GET_CORONA_UPDATE = 'GET_CORONA_UPDATE'

@@ -1,17 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import CoronaContext from '../context/coronaContext'
 const CoronaVirus = () => {
-    const { getCoronaUpdate } = useContext(CoronaContext)
+    const { getCoronaUpdate, locations } = useContext(CoronaContext)
 
-    const [locations, setLocations] = useState([])
-
-    const hitApi = async () => {
-        const data = await getCoronaUpdate()
-        setLocations(Object.values(data.locations))
-    }
     useEffect(() => {
-        hitApi()
+        getCoronaUpdate()
     }, [])
+
     return (
         <div>
             <h1>Corona Virus Update</h1>
@@ -27,7 +22,7 @@ const CoronaVirus = () => {
 
             <tbody>
             {locations.map(location => (
-                <tr>
+                <tr key={location.id}>
                     <td>{location.country}</td>
                     <td>{location.latest.confirmed}</td>
                     <td>{location.latest.deaths}</td>
