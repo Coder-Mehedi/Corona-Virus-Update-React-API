@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from 'react'
 import CoronaContext from '../context/coronaContext'
 const CoronaVirus = () => {
-    const { getCoronaUpdate, locations } = useContext(CoronaContext)
+    const { getCoronaUpdate, locations, searchedCountry } = useContext(CoronaContext)
 
     useEffect(() => {
         getCoronaUpdate()
+        // eslint-disable-next-line
     }, [])
 
     return (
         <div>
-            <h1>Corona Virus Update</h1>
             <table className="striped responsive-table centered container">
             <thead>
                 <tr>
@@ -21,14 +21,23 @@ const CoronaVirus = () => {
             </thead>
 
             <tbody>
-            {locations.map(location => (
+            {searchedCountry === null ? locations.map(location => (
                 <tr key={location.id}>
                     <td>{location.country}</td>
                     <td>{location.latest.confirmed}</td>
                     <td>{location.latest.deaths}</td>
                     <td>{location.latest.recovered}</td>
                 </tr>
-                ))}
+                )): (
+                    searchedCountry.map(location => (
+                        <tr key={location.id}>
+                            <td>{location.country}</td>
+                            <td>{location.latest.confirmed}</td>
+                            <td>{location.latest.deaths}</td>
+                            <td>{location.latest.recovered}</td>
+                        </tr>
+                        ))
+                )}
                 
             </tbody>
             </table>

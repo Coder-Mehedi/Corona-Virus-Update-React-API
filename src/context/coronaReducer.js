@@ -1,4 +1,4 @@
-import { GET_CORONA_UPDATE } from './types'
+import { GET_CORONA_UPDATE, FIND_BY_COUNTRY } from './types'
 
 export default (state, action) => {
     switch(action.type) {
@@ -6,6 +6,11 @@ export default (state, action) => {
             return {
                 ...state,
                 locations: action.payload
+            }
+        case FIND_BY_COUNTRY:
+            return {
+                ...state,
+                searchedCountry: action.payload
             }
                 
         default:
