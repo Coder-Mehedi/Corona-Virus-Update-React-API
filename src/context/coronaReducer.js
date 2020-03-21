@@ -11,9 +11,10 @@ export default (state, action) => {
             return {
                 ...state,
                 total: {
-                    confirmed: action.payload.confirmed,
+                    confirmed: action.payload.cases,
                     deaths: action.payload.deaths,
-                    recovered: action.payload.recovered
+                    recovered: action.payload.recovered,
+                    updated: action.payload.updated
                 }
             }
         case FIND_BY_COUNTRY:

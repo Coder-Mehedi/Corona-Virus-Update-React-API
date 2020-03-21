@@ -2,10 +2,11 @@ import React, { useContext, useEffect } from 'react'
 import CoronaContext from '../context/coronaContext'
 
 const CoronaVirus = () => {
-    const { getCoronaUpdate, locations, searchedCountry } = useContext(CoronaContext)
+    const { getCoronaUpdate, getTotal, locations, searchedCountry } = useContext(CoronaContext)
 
     useEffect(() => {
         getCoronaUpdate()
+        getTotal()
         // eslint-disable-next-line
     }, [locations])
 
@@ -15,27 +16,42 @@ const CoronaVirus = () => {
             <thead>
                 <tr>
                     <th>Country</th>
-                    <th>Confirm Cases</th>
+                    <th>Cases</th>
+                    <th>Today's Cases</th>
                     <th>Deaths</th>
+                    <th>Today's Deaths</th>
                     <th>Recovered</th>
+                    <th>Active</th>
+                    <th>Critical</th>
+                    <th>Cases Per One Million</th>
                 </tr>
             </thead>
 
             <tbody>
-            {searchedCountry === null ? locations.map(location => (
-                <tr key={location.id}>
+            {searchedCountry === null || searchedCountry === '' ? locations.map(location => (
+                <tr key={location.country}>
                     <td>{location.country}</td>
-                    <td>{location.latest.confirmed}</td>
-                    <td>{location.latest.deaths}</td>
-                    <td>{location.latest.recovered}</td>
+                    <td>{location.cases}</td>
+                    <td>{location.todayCases}</td>
+                    <td>{location.deaths}</td>
+                    <td>{location.todayDeaths}</td>
+                    <td>{location.recovered}</td>
+                    <td>{location.active}</td>
+                    <td>{location.critical}</td>
+                    <td>{location.casesPerOneMillion}</td>
                 </tr>
                 )): (
                     searchedCountry.map(location => (
-                        <tr key={location.id}>
+                        <tr key={location.country}>
                             <td>{location.country}</td>
-                            <td>{location.latest.confirmed}</td>
-                            <td>{location.latest.deaths}</td>
-                            <td>{location.latest.recovered}</td>
+                            <td>{location.cases}</td>
+                            <td>{location.todayCases}</td>
+                            <td>{location.deaths}</td>
+                            <td>{location.todayDeaths}</td>
+                            <td>{location.recovered}</td>
+                            <td>{location.active}</td>
+                            <td>{location.critical}</td>
+                            <td>{location.casesPerOneMillion}</td>
                         </tr>
                         ))
                 )}

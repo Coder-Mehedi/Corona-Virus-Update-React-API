@@ -11,7 +11,8 @@ const CoronaContextProvider = props => {
         total: {
             confirmed: 0,
             deaths: 0,
-            recovered: 0
+            recovered: 0,
+            updated: 0
         },
         searchedCountry: null
     }
@@ -19,20 +20,13 @@ const CoronaContextProvider = props => {
     const [state, dispatch] = useReducer(coronaReducer, initialState)
 
     const getCoronaUpdate = async () => {
-        const res = await axios.get('https://coronavirus-tracker-api.herokuapp.com/v2/locations')
-        dispatch({ type: GET_CORONA_UPDATE, payload: Object.values(res.data.locations) })
+        const res = await axios.get('https://corona.lmao.ninja/countries')
+        dispatch({ type: GET_CORONA_UPDATE, payload: res.data })
 
-        let confirmed = 0
-        let deaths = 0
-        let recovered = 0
-
-        state.locations.map(country => {
-            confirmed += country.latest.confirmed
-            deaths += country.latest.deaths
-            recovered += country.latest.recovered
-        })
-
-        dispatch({ type: SET_TOTAL, payload: { confirmed, deaths, recovered }})
+    }
+    const getTotal = async () => {
+        const res = await axios.get('https://corona.lmao.ninja/all')
+        dispatch({ type: SET_TOTAL, payload: res.data })
     }
 
     const findByCountry = searchText => {
@@ -46,6 +40,7 @@ const CoronaContextProvider = props => {
                 total: state.total,
                 searchedCountry: state.searchedCountry,
                 getCoronaUpdate,
+                getTotal,
                 findByCountry
             }}>
             { props.children }
