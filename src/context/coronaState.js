@@ -8,6 +8,7 @@ import {
 	FIND_BY_COUNTRY,
 	SET_TOTAL,
 	CLEAR_SEARCH,
+	SET_BANGLADESH_INFO,
 } from "./types";
 
 const CoronaContextProvider = (props) => {
@@ -20,6 +21,7 @@ const CoronaContextProvider = (props) => {
 			updated: 0,
 		},
 		searchedCountry: null,
+		bangladesh: {},
 	};
 
 	const [state, dispatch] = useReducer(coronaReducer, initialState);
@@ -39,6 +41,12 @@ const CoronaContextProvider = (props) => {
 		);
 		dispatch({ type: FIND_BY_COUNTRY, payload: country });
 	};
+	const getBangladeshInfo = async () => {
+		const res = await axios.get(
+			"https://corona.lmao.ninja/v2/countries/bangladesh"
+		);
+		dispatch({ type: SET_BANGLADESH_INFO, payload: res.data });
+	};
 
 	const clearSearch = () => {
 		dispatch({ type: CLEAR_SEARCH });
@@ -49,11 +57,13 @@ const CoronaContextProvider = (props) => {
 			value={{
 				locations: state.locations,
 				total: state.total,
+				bangladesh: state.bangladesh,
 				searchedCountry: state.searchedCountry,
 				getCoronaUpdate,
 				getTotal,
 				findByCountry,
 				clearSearch,
+				getBangladeshInfo,
 			}}
 		>
 			{props.children}

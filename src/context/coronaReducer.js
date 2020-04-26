@@ -3,6 +3,7 @@ import {
 	FIND_BY_COUNTRY,
 	SET_TOTAL,
 	CLEAR_SEARCH,
+	SET_BANGLADESH_INFO,
 } from "./types";
 
 export default (state, action) => {
@@ -26,6 +27,11 @@ export default (state, action) => {
 			return {
 				...state,
 				searchedCountry: action.payload,
+			};
+		case SET_BANGLADESH_INFO:
+			return {
+				...state,
+				bangladesh: action.payload,
 			};
 		case CLEAR_SEARCH:
 			return {
