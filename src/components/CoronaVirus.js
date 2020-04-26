@@ -17,6 +17,7 @@ const CoronaVirus = () => {
 			<table className="striped responsive-table centered container">
 				<thead>
 					<tr>
+						<th>Flag</th>
 						<th>Country</th>
 						<th>Cases</th>
 						<th>Today's Cases</th>
@@ -33,6 +34,13 @@ const CoronaVirus = () => {
 					{searchedCountry === null
 						? locations.map((location) => (
 								<tr key={location.country}>
+									<td>
+										<img
+											src={location.countryInfo.flag}
+											alt="Country Flag"
+											className="flag"
+										/>
+									</td>
 									<td>{location.country}</td>
 									<td>{location.cases}</td>
 									<td>{location.todayCases}</td>
@@ -46,6 +54,13 @@ const CoronaVirus = () => {
 						  ))
 						: searchedCountry.map((location) => (
 								<tr key={location.country}>
+									<td>
+										<img
+											src={location.countryInfo.flag}
+											alt="Country Flag"
+											style={{ height: "17px" }}
+										/>
+									</td>
 									<td>{location.country}</td>
 									<td>{location.cases}</td>
 									<td>{location.todayCases}</td>
