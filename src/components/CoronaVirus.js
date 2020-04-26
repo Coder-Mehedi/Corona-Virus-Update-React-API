@@ -2,21 +2,13 @@ import React, { useContext, useEffect } from "react";
 import CoronaContext from "../context/coronaContext";
 
 const CoronaVirus = () => {
-	const {
-		getCoronaUpdate,
-		getBangladeshInfo,
-		getTotal,
-		locations,
-		searchedCountry,
-		bangladesh,
-	} = useContext(CoronaContext);
-
-	console.log(bangladesh);
+	const { getCoronaUpdate, getTotal, locations, searchedCountry } = useContext(
+		CoronaContext
+	);
 
 	useEffect(() => {
 		getCoronaUpdate();
 		getTotal();
-		getBangladeshInfo();
 		// eslint-disable-next-line
 	}, []);
 

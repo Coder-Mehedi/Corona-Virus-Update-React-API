@@ -5,6 +5,7 @@ import CoronaVirus from "./components/CoronaVirus";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Total from "./components/Total";
+import Bangladesh from "./components/Bangladesh";
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Header />
 				<Search />
 				<Total />
+				<Bangladesh />
 				<CoronaVirus />
 			</CoronaContextProvider>
 		</div>
