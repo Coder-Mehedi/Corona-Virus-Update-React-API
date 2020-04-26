@@ -3,7 +3,12 @@ import axios from "axios";
 import CoronaContext from "./coronaContext";
 import coronaReducer from "./coronaReducer";
 
-import { GET_CORONA_UPDATE, FIND_BY_COUNTRY, SET_TOTAL } from "./types";
+import {
+	GET_CORONA_UPDATE,
+	FIND_BY_COUNTRY,
+	SET_TOTAL,
+	CLEAR_SEARCH,
+} from "./types";
 
 const CoronaContextProvider = (props) => {
 	const initialState = {
@@ -35,6 +40,10 @@ const CoronaContextProvider = (props) => {
 		dispatch({ type: FIND_BY_COUNTRY, payload: country });
 	};
 
+	const clearSearch = () => {
+		dispatch({ type: CLEAR_SEARCH });
+	};
+
 	return (
 		<CoronaContext.Provider
 			value={{
@@ -44,6 +53,7 @@ const CoronaContextProvider = (props) => {
 				getCoronaUpdate,
 				getTotal,
 				findByCountry,
+				clearSearch,
 			}}
 		>
 			{props.children}
